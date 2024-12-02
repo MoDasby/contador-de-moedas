@@ -13,11 +13,12 @@ def preprocess_images(folder, size=(224, 224)):
         for filename in os.listdir(class_folder):
             filepath = os.path.join(class_folder, filename)
             img = cv2.imread(filepath)
-            img = crop_and_resize(img, size)
+            img = cv2.resize(img, size)
+            """ img = crop_and_resize(img, size)
 
             # Salvar imagem de exemplo (opcional)
-            os.makedirs(f"/home/giulliano/repos/contador-de-moedas/imagens_resized/{class_name}", exist_ok=True)
-            cv2.imwrite(f"/home/giulliano/repos/contador-de-moedas/imagens_resized/{class_name}/{filename}", img)
+            os.makedirs(f"/home/giulliano/repos/contador-de-moedas/images_resized/{class_name}", exist_ok=True)
+            cv2.imwrite(f"/home/giulliano/repos/contador-de-moedas/images_resized/{class_name}/{filename}", img) """
             
             img = img / 255.0  # Normalização
             images.append(img)
@@ -45,5 +46,3 @@ def crop_and_resize(img, size):
     result[y_offset:y_offset+new_height, x_offset:x_offset+new_width] = resized
     
     return result
-
-preprocess_images("images")
